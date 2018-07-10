@@ -1,0 +1,36 @@
+group 'com.exoline'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'checkstyle'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+/*tasks.withType(Checkstyle) {
+    reports {
+        xml.enabled false
+        html.enabled true
+        html.stylesheet resources.text.fromFile('config/xsl/checkstyle-')
+    }
+}*/
+checkstyle {
+    toolVersion "7.6.1"
+}
+
+dependencies {
+    compile name: 'algs4'
+}
+
+sourceSets {
+    main.java.srcDirs += 'src/main/java'
+}
+
+mainClassName = 'Percolation'
