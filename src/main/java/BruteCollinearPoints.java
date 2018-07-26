@@ -14,12 +14,12 @@ public class BruteCollinearPoints {
         for(int i = 0; i < points.length; i++) {
             Point iPoint = points[i];
             for(int j = i + 1; j < points.length; j++) {
+                Point jPoint = points[j];
                 for(int k = j + 1; k < points.length; k++) {
+                    Point kPoint = points[k];
                     for(int l = k + 1; l < points.length; l++) {
-                        Point jPoint = points[j];
-                        Point kPoint = points[k];
                         Point lPoint = points[l];
-                        if(iPoint.slopeTo(jPoint) == iPoint.slopeTo(kPoint) && iPoint.slopeTo(kPoint)== iPoint.slopeTo(lPoint)) {
+                        if(iPoint.slopeTo(jPoint) == jPoint.slopeTo(kPoint) && jPoint.slopeTo(kPoint)== kPoint.slopeTo(lPoint)) {
                             Point minPoint = min(iPoint, jPoint, kPoint, lPoint);
                             Point maxPoint = max(iPoint, jPoint, kPoint, lPoint);
                             if(segments.length == numberOfSegments) resizeSegments(segments.length * 2);
@@ -95,6 +95,7 @@ public class BruteCollinearPoints {
 
         // print and draw the line segments
         BruteCollinearPoints collinear = new BruteCollinearPoints(points);
+        LineSegment seg = new LineSegment(new Point(0, 10), new Point(25, 100));
         for (LineSegment segment : collinear.segments()) {
             StdOut.println(segment);
             segment.draw();
